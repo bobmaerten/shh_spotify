@@ -1,9 +1,10 @@
 # shh\_spotify
 
 Lowers the Spotify application volume when a specific track is played.
-Tracks to be watched are stored in the `~/.shh\_spotify.watchlist` file.
+Tracks to be watched are stored in the `~/.shh_spotify.watchlist` file.
+The watchfile will be eventually created.
 
-Tested only on Ubuntu 12.04 LTS
+Tested only for the moment on Ubuntu 12.04LTS with ruby1.9.3 installed via [rbenv](https://github.com/sstephenson/rbenv).
 
 ## Pre-requisites
   - ruby with rubygems (aptitude install ruby rubygems)
