@@ -1,24 +1,29 @@
-# ShhSpotify
+# shh\_spotify
 
-TODO: Write a gem description
+Lowers the Spotify application volume when a specific track is played.
+Tracks to be watched are stored in the `~/.shh\_spotify.watchlist` file.
+
+Tested only on Ubuntu 12.04 LTS
+
+## Pre-requisites
+  - ruby with rubygems (aptitude install ruby rubygems)
+  - dbus (native on linux)
+  - pulseaudio (native on Ubuntu 12.04)
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'shh_spotify'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install as usual ruby gems:
 
     $ gem install shh_spotify
 
 ## Usage
 
-TODO: Write usage instructions here
+Start Spotify, then open a console and type:
+
+    $ ssh_spotify
+
+Press 'q' to quit, or 'p' to insert current track in watchlist file.
+The current track's volume is automaticaly lowered.
 
 ## Contributing
 
