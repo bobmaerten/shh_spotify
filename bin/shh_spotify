@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+
+require "shh_spotify/version.rb"
+require "shh_spotify/player.rb"
+require "shh_spotify/volume.rb"
+require "shh_spotify/watchlist.rb"
+require "shh_spotify/inputs.rb"
+
+spotify   = ShhSpotify::Player.new
+audio     = ShhSpotify::Volume.new
+watchlist = ShhSpotify::Watchlist.new
+
+# Info and usage
+puts "#{File.basename(__FILE__)} v#{ShhSpotify::VERSION}"
+puts "Press 'q' to quit, or 'p' to add current watch in watchlist and lower volume."
+
+# Initialize loop variables
+currently_playing = ""
+in_watchlist = false
+
+# Start hecking
+loop do
+  # still running ?
+  spotify.check?
+
+  # key pressed ?
+  c = char_if_pressed
+  if c
+    case c
+    when 'q'
+      puts "\nSpotify's no longer monitored."
+      exit
+    when 'p'
+      puts "\nAdding current track to watchlist file."
+      watchlist.add(spotify.playing)
+      currently_playing = ""
+    end
+  end
+
+  # changed track ?
+  if spotify.playing.eql? currently_playing
+    sleep 1
+  else
+    currently_playing = spotify.playing
+    if watchlist.include? currently_playing
+      if !in_watchlist
+        puts "Watched track currently playing, decreasing volume."
+        audio.lower_volume
+      else
+        puts "Another watched track playing, keeping volume low."
+      end
+      in_watchlist = true
+      sleep 1
+      # Spotify may autopause at this point, checking and resuming
+      spotify.resume if spotify.paused?
+    else
+      if in_watchlist
+        in_watchlist = false
+        puts "Watched track over, restoring previous volume."
+        audio.restore_volume
+      end
+      puts currently_playing
+    end
+  end
+end
