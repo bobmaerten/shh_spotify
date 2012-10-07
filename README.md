@@ -4,10 +4,12 @@ Lowers the Spotify application volume when a specific track is played.
 Tracks to be watched are stored in the `~/.shh_spotify.watchlist` file.
 The watchfile will be eventually created.
 
-Tested only for the moment on Ubuntu 12.04LTS with ruby1.9.3 installed via [rbenv](https://github.com/sstephenson/rbenv).
+Successfully tested only on :
+ - Ubuntu 12.04LTS with ruby1.9.3 installed via [rbenv](https://github.com/sstephenson/rbenv).
+ - Ubuntu 12.10 beta2 with native ruby package (apt-get install ruby1.9.1)
 
 ## Pre-requisites
-  - ruby with rubygems (aptitude install ruby rubygems)
+  - ruby with rubygems
   - dbus (native on linux)
   - pulseaudio (native on Ubuntu 12.04)
 
@@ -15,7 +17,7 @@ Tested only for the moment on Ubuntu 12.04LTS with ruby1.9.3 installed via [rben
 
 Install as usual ruby gems:
 
-    $ gem install shh_spotify
+    $ [sudo] gem install shh_spotify
 
 ## Usage
 
